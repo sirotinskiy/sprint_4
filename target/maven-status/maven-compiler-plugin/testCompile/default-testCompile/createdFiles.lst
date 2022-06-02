@@ -1,0 +1,4 @@
+account/test/CheckFieldToSpaceAtTheBordersTest.class
+account/test/CheckFieldToSpaceInsideTest.class
+account/test/CheckFieldToLengthTest.class
+account/test/CheckNameToEmbossTest.class
