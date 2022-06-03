@@ -23,6 +23,8 @@ public class CheckFieldToLengthTest {
         this.expectResult = expectResult;
     }
 
+
+    //метод checkFieldToLength() - проверяет поле только на длину строки, то есть что длина должна быть от 3 до 19
     @Parameterized.Parameters
     public static Object[][] getTestData() {
         return new Object[][] {
