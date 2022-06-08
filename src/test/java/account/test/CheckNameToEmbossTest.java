@@ -2,6 +2,7 @@ package account.test;
 
 import account.Account;
 import io.qameta.allure.junit4.DisplayName;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +17,7 @@ public class CheckNameToEmbossTest {
 
     private Account account;
 
-    public CheckNameToEmbossTest(String testField, boolean expectResult) {
+    public CheckNameToEmbossTest(boolean expectResult, String testField) {
         this.testField = testField;
         this.expectResult = expectResult;
     }
@@ -24,10 +25,15 @@ public class CheckNameToEmbossTest {
     @Parameterized.Parameters
     public static Object[][] getTestData() {
         return new Object[][]{
-                {"sdf sdf", true},
-                {"sd f sdf", false},
-                {"", false},
-                {" asdasd sdf ", false}
+                {false, new StringBuilder(RandomStringUtils.randomAlphabetic(1)).toString()},
+                {false, new StringBuilder(RandomStringUtils.randomAlphabetic(19) + " " + RandomStringUtils.randomAlphabetic(2)).toString()},
+                {false, new StringBuilder(" " + " " + RandomStringUtils.randomAlphabetic(1)).toString()},
+                {false, new StringBuilder(RandomStringUtils.randomAlphabetic(16) + " " + " "  + RandomStringUtils.randomAlphabetic(1)).toString()},
+                {false, new StringBuilder(RandomStringUtils.randomAlphabetic(3) + " " + " " + RandomStringUtils.randomAlphabetic(3) + " " + RandomStringUtils.randomAlphabetic(3)).toString()},
+                {false, new StringBuilder(" " + RandomStringUtils.randomAlphabetic(3) + " " + RandomStringUtils.randomAlphabetic(3)).toString()},
+                {false, new StringBuilder(RandomStringUtils.randomAlphabetic(16) + " " + RandomStringUtils.randomAlphabetic(1) + " ").toString()},
+                {false, new StringBuilder(" " + RandomStringUtils.randomAlphabetic(3) + " " + RandomStringUtils.randomAlphabetic(1) + " ").toString()},
+                {true, new StringBuilder(RandomStringUtils.randomAlphabetic(3) + " " + RandomStringUtils.randomAlphabetic(3)).toString()},
         };
     }
 
